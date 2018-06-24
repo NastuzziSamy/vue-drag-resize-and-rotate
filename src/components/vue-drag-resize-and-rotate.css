@@ -1,0 +1,100 @@
+.dragable {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  background: #fff;
+  box-sizing: border-box;
+  float: left;
+  margin: 10px;
+  height: auto;
+}
+
+.dragable.active {
+    border: 1px solid #555;
+}
+
+.stick {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #FFF;
+  border: 2px solid #AAA;
+  border-radius: 10px;
+  box-sizing: border-box;
+  cursor: se-resize;
+}
+
+.stick-tl {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    cursor: nwse-resize;
+}
+
+.stick-tm, .stick-ro, .bar-ro {
+    top: 0;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: ns-resize;
+}
+
+.stick-tr {
+    top: 0;
+    right: 0;
+    transform: translate(+50%, -50%);
+    cursor: nesw-resize;
+}
+
+.stick-ml {
+    top: 50%;
+    bottom: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    cursor: ew-resize;
+}
+
+.stick-mr {
+    top: 50%;
+    bottom: 50%;
+    right: 0;
+    transform: translate(+50%, -50%);
+    cursor: ew-resize;
+}
+
+.stick-bl {
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, +50%);
+    cursor: nesw-resize;
+}
+
+.stick-bm {
+    bottom: 0;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, +50%);
+    cursor: ns-resize;
+}
+
+.stick-br {
+    bottom: 0;
+    right: 0;
+    transform: translate(+50%, +50%);
+    cursor: nwse-resize;
+}
+
+.stick-ro {
+    top: -25px;
+    cursor: grab;
+}
+
+.dragable > .bar-ro {
+    position: absolute;
+    height: 25px;
+    transform: translate(-50%, -100%);
+}
+
+.dragable.active > .bar-ro {
+    border-left: 1px solid #555;
+}

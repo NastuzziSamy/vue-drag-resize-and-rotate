@@ -1,0 +1,11 @@
+<div class='dragable' :class="{active: localactive}" @mousedown='handleDown' @mouseup='handleUp' :style='boxStyle'>
+    <slot></slot>
+    <div class="bar-ro" v-show="localactive && rotable"></div>
+    <div v-for="stick in sticks"
+        class="stick"
+        :class="'stick-' + stick"
+        v-show="localactive && (stick === 'ro' ? rotable : draggable)"
+        @mousedown.stop.prevent="stick === 'ro' ? rotateStart($event) : resizeStart(stick, $event)"
+        @touchstart.stop.prevent="stick === 'ro' ? rotateStart($event) : resizeStart(stick, $event)">
+    </div>
+</div>
