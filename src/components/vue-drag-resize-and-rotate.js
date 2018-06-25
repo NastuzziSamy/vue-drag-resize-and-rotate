@@ -136,14 +136,6 @@ export default {
         type: Boolean,
         default: false
     },
-    activation: {
-        type: Function,
-        default: undefined
-    },
-    desactivation: {
-        type: Function,
-        default: undefined
-    },
     draggable: {
       type: Boolean,
       default: true
@@ -160,11 +152,11 @@ export default {
       type: String,
       default: 'xy'
     },
-    handle: {
+    dragHandle: {
       type: String,
       default: undefined
     },
-    cancel: {
+    dragCancel: {
       type: String,
       default: undefined
     },
@@ -187,7 +179,7 @@ export default {
     },
     bounds: {
       type: Object,
-      default: null
+      default: undefined
     }
   },
   watch: {
@@ -249,15 +241,43 @@ export default {
         setActive: function (active) {
             if (this.localactive !== active) {
                 this.localactive = active
-
-                if (active) {
-                    if (this.activation)
-                        this.activation()
-                }
-                else {
-                    if (this.desactivation)
-                        this.desactivation()
-                }
+                this.$emit(active ? 'activation' : 'desactivation')
+            }
+        },
+        setDrag: function (drag) {
+            if (this.dragging !== drag) {
+                this.dragging = drag
+                this.$emit(drag ? 'dragging' : 'dragstop', {
+                      x: this.localx,
+                      y: this.localy,
+                      w: this.localw,
+                      h: this.localh,
+                      r: this.localr
+                  })
+            }
+        },
+        setResize: function (resize) {
+            if (this.resizing !== resize) {
+                this.resizing = resize
+                this.$emit(resize ? 'resizing' : 'resizestop', {
+                      x: this.localx,
+                      y: this.localy,
+                      w: this.localw,
+                      h: this.localh,
+                      r: this.localr
+                  })
+            }
+        },
+        setRotate: function (rotate) {
+            if (this.rotating !== rotate) {
+                this.rotating = rotate
+                this.$emit(rotate ? 'rotating' : 'rotatestop', {
+                      x: this.localx,
+                      y: this.localy,
+                      w: this.localw,
+                      h: this.localh,
+                      r: this.localr
+                  })
             }
         },
     getRotateAngle: function(x, y) {
@@ -281,7 +301,8 @@ export default {
         this.rotateStartX = e.clientX
         this.rotateStartY = e.clientY
         this.lastR = this.localr
-        this.rotating = true
+
+        this.setRotate(true)
       }
     },
     resizeStart: function(stick, e) {
@@ -297,43 +318,35 @@ export default {
 
         this.stick = stick
 
-        this.resizing = true
+        this.setResize(true)
     },
     mouseDown: function(e) {
-        if ((this.handle && !matchesSelector(e.target, this.handle)) || e.target !== this.$el) {
+        if ((this.dragHandle && !matchesSelector(e.target, this.dragHandle)) || e.target !== this.$el) {
             this.detachEvents()
             this.setActive(false)
         }
     },
     handleDown: function(e) {
-      if (this.handle && !matchesSelector(e.target, this.handle))
+      if (this.dragHandle && !matchesSelector(e.target, this.dragHandle))
         return
 
       this.attachEvents()
       this.setActive(true)
 
-      if (this.cancel && matchesSelector(e.target, this.cancel))
+      if (this.dragCancel && matchesSelector(e.target, this.dragCancel))
         return
 
         this.lastX = e.clientX - this.localx
         this.lastY = e.clientY - this.localy
 
-      this.dragging = true
+        this.setDrag(true)
     },
     handleUp: function(e) {
         this.detachMovementEvents()
 
-      this.dragging = false
-      this.resizing = false
-      this.rotating = false
-
-      this.$emit('handleUp', {
-        x: this.localx,
-        y: this.localy,
-        w: this.localw,
-        h: this.localh,
-        r: this.localr
-      })
+      this.setDrag(false)
+      this.setResize(false)
+      this.setRotate(false)
     },
     mouseMove: function(e) {
       if (e.stopPropagation) e.stopPropagation()
@@ -380,8 +393,6 @@ export default {
 
           var w = parseInt(e.clientX) - parseInt(this.resizeStartX)
           var h = parseInt(e.clientY) - parseInt(this.resizeStartY)
-
-          console.log(this.localr, w, h, w * Math.cos(this.localr * (Math.PI / 180)))
 
           switch (currentStick[0]) {
               case 't':

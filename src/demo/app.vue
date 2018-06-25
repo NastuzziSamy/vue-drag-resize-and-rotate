@@ -1,9 +1,9 @@
 <template>
 <div>
-  <vue-drr :w='200' :h='200' cancel='.block-text' :active="active" :rotable="true" :desactivation="desac" style="background-color: green">
+  <vue-drr :w='200' :h='200' dragCancel='.block-text' :active="active" :bounds="{parent: true}" :rotable="true" @desactivation="desac" style="background-color: green">
       <div class="block-text" contenteditable="true" @keydown="handleDown" @click="setActive">Editable zone, not draggable</div>
   </vue-drr>
-  <vue-drr :w='200' :h='200' :rotable="true" style="left: 250px; background-color: red">
+  <vue-drr :w='200' :h='200' :rotable="true" style="left: 250px; background-color: red" :grid="[50, 50]">
       Fully draggable<br />
       Text not editable or selectable
   </vue-drr>
@@ -39,12 +39,9 @@ export default {
       console.log(event)
     },
     setActive: function (event) {
-        console.log(event)
-
         this.active = true;
     },
     desac: function () {
-        console.log('a')
         this.active = false;
     }
   }
