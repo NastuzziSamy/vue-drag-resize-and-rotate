@@ -1,10 +1,11 @@
 {
   "name": "vue-drag-resize-and-rotate",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": " VueJs2 component for draggable, resizable and rotable elements completly editable",
-  "main": "index.js",
+  "main": "src/components/vue-drag-resize-and-rotate.vue",
   "scripts": {
     "dev": "NODE_ENV=develop webpack-dev-server -d",
+    "build": "rm -rf ./dist && webpack --mode production --config ./webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,10 @@
     "url": "https://github.com/NastuzziSamy/vue-drag-resize-and-rotate/issues"
   },
   "homepage": "https://github.com/NastuzziSamy/vue-drag-resize-and-rotate#readme",
+  "dependencies": {
+      "victor": "^1.1.0",
+      "vue": "^2.1.8"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -43,8 +48,6 @@
     "postcss-preset-env": "^5.1.0",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.6",
-    "victor": "^1.1.0",
-    "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
     "vue-template-compiler": "^2.5.16",
     "watchpack": "^1.5.0",

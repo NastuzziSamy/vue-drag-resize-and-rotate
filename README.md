@@ -1,8 +1,8 @@
 <h1 align="center">Vue Drag Resize And Rotate</h1>
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/VueDragResizeAndRotate-and-rotate.svg?style=flat-square)](https://npmjs.com/package/VueDragResizeAndRotate-and-rotate)
+[![Latest Version on NPM](https://img.shields.io/npm/v/vue-drag-resize-and-rotate.svg?style=flat-square)](https://npmjs.com/package/vue-drag-resize-and-rotate)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![npm](https://img.shields.io/npm/dt/VueDragResizeAndRotate-and-rotate.svg?style=flat-square)](https://www.npmjs.com/package/VueDragResizeAndRotate-and-rotate)
+[![npm](https://img.shields.io/npm/dt/vue-drag-resize-and-rotate.svg?style=flat-square)](https://www.npmjs.com/package/vue-drag-resize-and-rotate)
 
 > Vue Component for draggable and resizable elements.
 

@@ -53,6 +53,11 @@ module.exports = {
             vue: 'vue/dist/vue.common.js'
         }
     },
+
+    externals: {
+        victor: 'victor'
+    },
+
     module: {
         rules: [
 
