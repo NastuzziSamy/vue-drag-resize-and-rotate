@@ -39,7 +39,7 @@ Not available for now
 ## Install and basic usage
 
 ```bash
-$ npm i -s VueDragResizeAndRotate-and-rotate
+$ npm i -s vue-drag-resize-and-rotate
 ```
 
 
@@ -47,9 +47,9 @@ Register the component:
 
 ```js
 import Vue from 'vue'
-import VueDragResizeAndRotate from 'VueDragResizeAndRotate-and-rotate'
+import VueDragResizeAndRotate from 'vue-drag-resize-and-rotate'
 
-Vue.component('VueDragResizeAndRotate-and-rotate', VueDragResizeAndRotate)
+Vue.component('vue-drag-resize-and-rotate', VueDragResizeAndRotate)
 ```
 
 Use the component:
@@ -66,7 +66,7 @@ Use the component:
 </template>
 
 <script>
-    import VueDragResizeAndRotate from 'VueDragResizeAndRotate-and-rotate';
+    import VueDragResizeAndRotate from 'vue-drag-resize-and-rotate';
 
     export default {
         name: 'app',
